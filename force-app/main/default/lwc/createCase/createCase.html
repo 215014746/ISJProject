@@ -1,0 +1,36 @@
+<template>
+    <lightning-card title="Create New Case" icon-name="standard:case">
+        <div class="slds-m-around_medium">
+            <lightning-combobox
+                name="SubjectId"
+                label="Subject"
+                value={caseObject.SubjectId}
+                options={subjects}
+                onchange={handleSubjectChange}
+                required
+            ></lightning-combobox>
+            <lightning-input 
+                type="text" 
+                label="Case Subject" 
+                name="Subject"
+                value={caseObject.Subject}
+                onchange={handleInputChange}
+                required
+            ></lightning-input>
+            <lightning-textarea 
+                name="Description"
+                label="Description"
+                value={caseObject.Description}
+                onchange={handleInputChange}
+                required
+            ></lightning-textarea>
+            <div class="slds-m-top_medium">
+                <lightning-button 
+                    label="Submit"
+                    variant="brand"
+                    onclick={handleSubmit}
+                ></lightning-button>
+            </div>
+        </div>
+    </lightning-card>
+</template>

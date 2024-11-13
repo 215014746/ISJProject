@@ -1,0 +1,37 @@
+<template>
+    <lightning-card title="Assessment Details" icon-name="custom:custom63">
+        <template if:true={assessment}>
+            <div class="slds-p-around_medium">
+                <h2>{assessment.title}</h2>
+                <p>{assessment.description}</p>
+                <h3>Questions:</h3>
+                <template for:each={assessment.questions} for:item="question">
+                    <p key={question.assessmentQuestionId}>
+                        {question.questionNumber}. 
+                        <lightning-formatted-rich-text value={question.questionText}></lightning-formatted-rich-text>
+                    </p>
+                </template>
+                </div>
+                <hr>
+                <template if:true={assessmentResponse}>
+                    <lightning-button variant="neutral" label="Back" onclick={handleBack} ></lightning-button>
+                       
+                </template>
+                <template if:false={assessmentResponse}>
+                    <lightning-button variant="neutral" label="Create Assessment Response" onclick={handleCreateAssessmentResponse} ></lightning-button>   
+                </template>
+                <template if:true={assessmentResponse}>
+                    <lightning-button variant="neutral" label="View Assessment Response" onclick={handleViewAssessmentResponse} ></lightning-button>   
+                </template>
+        </template>
+        <div>
+            
+           
+           </div>
+        <template if:true={error}>
+            <div class="slds-text-color_error">{error}</div>
+        </template>
+    </lightning-card>
+    
+</template>
+

@@ -1,0 +1,25 @@
+<template>
+    <template if:true={subjectData}>
+        <h1> 
+          <strong>Subject name: {subjectData.name}</strong>  
+        </h1>
+        <h5>
+            Subject code: {subjectData.subjectCode}
+        </h5>
+
+    </template>
+    
+        <template for:each={assessments} for:item="assessment">
+                        
+            <lightning-card title= {assessment.title} key={assessment.assessmentId}>
+                
+                    <span > <strong>Assessment status: </strong>{assessment.assessmentStatus}</span><br><br>
+                    <span ><strong>Assessment Due date: </strong><lightning-formatted-date-time value= {assessment.dueDate} year="numeric" month="numeric" day="numeric" hour="2-digit"
+                        minute="2-digit" ></lightning-formatted-date-time> </span>
+
+                    <lightning-button slot="actions" class="view-subject-btn" label="View Assessment" data-assessment={assessment.assessmentId} onclick={navigateToViewAssessment}></lightning-button>
+                
+            </lightning-card>
+    </template>
+    
+</template>

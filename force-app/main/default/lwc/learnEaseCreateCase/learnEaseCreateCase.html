@@ -1,0 +1,31 @@
+<template>
+    <lightning-modal-header label="Create New Case" icon-name="standard:case"></lightning-modal-header>
+    <lightning-modal-body>
+        <div class="slds-grid slds-gutters slds-var-p-around_medium">
+        <div class="slds-col">
+            <div class="slds-p-around_medium lgc-bg"><lightning-input type="text" label="Subject" onchange={handleSubject}> </lightning-input></div>
+            <lightning-combobox
+            label="Case Reason"
+            placeholder="Select Case Reason"
+            options={options}
+            onchange={handleReason} ></lightning-combobox>
+        </div>
+        <div class="slds-col">
+        <div class="slds-p-around_medium lgc-bg"><lightning-input type="text" label="Description" onchange={handleDescription}></lightning-input></div>
+        <lightning-combobox
+            label="Case Receiver"
+            placeholder="Select Case Receiver"
+            options={caseReceivers}
+            onchange={handleLecturer} ></lightning-combobox>
+
+    </div>
+        
+</div> 
+        <div class="slds-var-m-top_medium">
+            <lightning-button variant="neutral" label="Cancel" onclick={handleCancel}
+                class="slds-var-m-right_x-small"></lightning-button>
+            <lightning-button variant="brand" label="Save" onclick={handleSave}></lightning-button>
+        </div>
+    </lightning-modal-body>
+        
+</template>

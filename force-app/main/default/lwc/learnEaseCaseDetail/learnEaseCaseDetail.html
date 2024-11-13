@@ -1,0 +1,28 @@
+<template>
+    <lightning-card title="Case Details" icon-name="standard:case">
+        <template if:true={recordId}>
+            <lightning-record-view-form
+                record-id={recordId}
+                object-api-name="Case"
+            >
+                <div class="slds-grid slds-gutters slds-var-p-around_medium">
+                    <div class="slds-col">
+                        <lightning-output-field field-name="CaseNumber"></lightning-output-field>
+                        <lightning-output-field field-name="Subject"></lightning-output-field>
+                         <lightning-output-field field-name="Status"></lightning-output-field>
+                        <lightning-output-field field-name="Reason"></lightning-output-field>
+                    </div>
+                    <div class="slds-col">
+                        <lightning-output-field field-name="Description"></lightning-output-field>
+                        <lightning-output-field field-name="Owner.Name"></lightning-output-field>
+                        <lightning-output-field field-name="CreatedDate"></lightning-output-field>
+                        <lightning-output-field field-name="LastModifiedDate"></lightning-output-field>
+                    </div>
+                </div>
+            </lightning-record-view-form>
+        </template>
+        <div class="slds-var-m-top_medium">
+            <lightning-button variant="neutral" label="Back to list" onclick={handleBack} class="slds-var-m-right_x-small"></lightning-button>
+        </div>
+    </lightning-card>
+</template>

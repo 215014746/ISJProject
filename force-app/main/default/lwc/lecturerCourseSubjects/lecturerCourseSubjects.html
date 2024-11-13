@@ -1,0 +1,23 @@
+<template>
+    <lightning-card title="Lecturer Subjects" icon-name="custom:custom63">
+        <div class="course-container">
+            <template if:true={lecturerSubjectData}>
+                
+                <hr/>
+                    <template for:each={lecturerSubjectData} for:item="subject">
+                        
+                            <lightning-card title= {subject.name} key={subject.subject}>
+                                
+                                <lightning-button slot="actions" class="view-subject-btn" label="View subject" data-subject={subject.subject} onclick={navigateToViewSubject}></lightning-button>
+                                
+                            </lightning-card>
+                        
+                    </template>
+                
+            </template>
+            <template if:false={lecturerSubjectData}>
+                <p class="no-data">No subjects found.</p>
+            </template>
+        </div>
+    </lightning-card>
+</template>

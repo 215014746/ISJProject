@@ -1,0 +1,19 @@
+<template>
+    <lightning-card title="Cases List" icon-name="standard:case">
+        <div slot="actions">
+            <lightning-button 
+                label="Create New Case" 
+                icon-name="utility:add"
+                onclick={handleCreateCase}>
+            </lightning-button>
+        </div>
+        <lightning-datatable
+            key-field="id"
+            data={data}
+            columns={columns}
+            onrowaction={handleRowAction}
+            hide-checkbox-column="true">
+        </lightning-datatable>
+    </lightning-card>
+    
+</template>

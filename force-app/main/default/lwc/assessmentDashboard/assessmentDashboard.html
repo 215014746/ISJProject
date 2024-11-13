@@ -1,0 +1,24 @@
+<template>
+    <div class="dashboard">
+        <div class="counter">
+            <lightning-card title="In Progress" icon-name="utility:success">
+                <p class="slds-text-heading_large">{inProgressCount}</p>
+            </lightning-card>
+            <lightning-card title="Complete" icon-name="utility:check">
+                <p class="slds-text-heading_large">{completeCount}</p>
+            </lightning-card>
+            <lightning-card title="Not Started" icon-name="utility:warning">
+                <p class="slds-text-heading_large">{notStartedCount}</p>
+            </lightning-card>
+        </div>
+    </div>
+        <div class="datatable">
+            <lightning-datatable
+                key-field="id"
+                data={assessments}
+                columns={columns}
+                hide-checkbox-column="true">
+            </lightning-datatable>
+        </div>
+    
+</template>

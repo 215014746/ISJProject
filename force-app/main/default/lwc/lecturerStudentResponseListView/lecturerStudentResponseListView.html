@@ -1,0 +1,17 @@
+<template>
+    <lightning-card title="Student Assessment Responses" icon-name="custom:custom63">
+        <template if:true={data}>
+            <lightning-datatable
+                key-field="id"
+                data={data}
+                columns={columns}
+                onrowaction={handleRowAction}
+                hide-checkbox-column="true"
+            >
+            </lightning-datatable>
+        </template>
+        <template if:true={error}>
+            <p class="slds-text-color_error">{error}</p>
+        </template>
+    </lightning-card>
+</template>

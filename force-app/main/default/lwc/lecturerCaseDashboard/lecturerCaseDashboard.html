@@ -1,0 +1,23 @@
+<template>
+    <lightning-card title="Lecturer Case Dashboard">
+        <div class="slds-grid slds-gutters">
+            <template if:true={caseSummary}>
+                <div class="slds-col slds-size_1-of-3 dashboard-tile">
+                    <p class="slds-text-title">New Cases</p>
+                    <p class="slds-text-heading_large">{caseSummary.New}</p>
+                </div>
+                <div class="slds-col slds-size_1-of-3 dashboard-tile">
+                    <p class="slds-text-title">In Progress Cases</p>
+                    <p class="slds-text-heading_large">{caseSummary.InProgress}</p>
+                </div>
+                <div class="slds-col slds-size_1-of-3 dashboard-tile">
+                    <p class="slds-text-title">Closed Cases</p>
+                    <p class="slds-text-heading_large">{caseSummary.Closed}</p>
+                </div>
+            </template>
+            <template if:true={error}>
+                <p>{error}</p>
+            </template>
+        </div>
+    </lightning-card>
+</template>

@@ -1,0 +1,25 @@
+<template>
+    <lightning-card title="Case Dashboard">
+        <div class="slds-p-around_medium">
+            <template if:true={caseSummary}>
+                <lightning-layout multiple-rows>
+                    <lightning-layout-item size="4" class="dashboard-card">
+                        <p class="slds-text-title">New Cases</p>
+                        <p class="slds-text-heading_large">{caseSummary.New}</p>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="4" class="dashboard-card">
+                        <p class="slds-text-title">In Progress Cases</p>
+                        <p class="slds-text-heading_large">{caseSummary.InProgress}</p>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="4" class="dashboard-card">
+                        <p class="slds-text-title">Closed Cases</p>
+                        <p class="slds-text-heading_large">{caseSummary.Closed}</p>
+                    </lightning-layout-item>
+                </lightning-layout>
+            </template>
+            <template if:false={caseSummary}>
+                <p>No case data found.</p>
+            </template>
+        </div>
+    </lightning-card>
+</template>

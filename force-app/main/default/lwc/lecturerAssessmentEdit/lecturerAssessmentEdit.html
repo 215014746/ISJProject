@@ -1,0 +1,76 @@
+<template>
+    <lightning-card title="Edit Assessment" icon-name="custom:custom63">
+        <template if:true={assessment}>
+            <div class="slds-p-around_medium">
+                <h2>{assessment.title}</h2>
+                <p>{assessment.description}</p>
+
+                <h3>Edit Questions:</h3>
+                <template for:each={editedQuestions} for:item="question">
+                    <div key={question.assessmentQuestionId}>
+                        <lightning-input
+                            label="Question Number"
+                            data-field="questionNumber"
+                            data-id={question.assessmentQuestionId}
+                            value={question.questionNumber}
+                            onchange={handleInputChange}
+                            type="number"
+                        ></lightning-input>
+
+                        <lightning-textarea
+                            label="Question Text"
+                            data-field="questionText"
+                            data-id={question.assessmentQuestionId}
+                            value={question.questionText}
+                            onchange={handleInputChange}
+                        ></lightning-textarea>
+
+                        <lightning-button
+                            label="Delete Question"
+                            data-id={question.assessmentQuestionId}
+                            onclick={handleDeleteQuestion}
+                            variant="destructive"
+                        ></lightning-button>
+
+                        <hr />
+                    </div>
+                </template>
+
+                <h3>Add New Question:</h3>
+                <lightning-textarea
+                    label="New Question Text"
+                    value={newQuestionText}
+                    onchange={handleNewQuestionTextChange}
+                ></lightning-textarea>
+
+                <lightning-button
+                    label="Add New Question"
+                    onclick={handleAddQuestion}
+                    variant="neutral"
+                ></lightning-button>
+
+                <hr />
+
+                <lightning-button 
+                    label="Save Questions" 
+                    onclick={handleSave} 
+                    variant="brand"
+                ></lightning-button>
+            </div>
+        </template>
+
+        <div>
+            <lightning-button 
+                variant="neutral" 
+                label="Back" 
+                onclick={handleBack}
+            ></lightning-button>
+        </div>
+
+        <template if:true={error}>
+            <div class="slds-text-color_error">{error}</div>
+        </template>
+    </lightning-card>
+</template>
+
+

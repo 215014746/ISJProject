@@ -1,0 +1,16 @@
+.dashboard {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+.counter {
+    display: flex;
+    gap: 20px;
+}
+.datatable {
+    margin-top: 20px;
+}
+.slds-text-heading_large {
+    font-size: 2rem;
+    
+}

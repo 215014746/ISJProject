@@ -1,0 +1,16 @@
+<template>
+
+    <lightning-modal-header label="Create New Assessment"></lightning-modal-header>
+            <lightning-modal-body>
+                <lightning-input label="Subject Code"  name="SubjectCode" value={assessment.subjectCode} disabled="true"></lightning-input>
+                <lightning-input label="title" name="title" onchange={handleInputTitle}></lightning-input>
+                <lightning-input label="Assessment Status"  name="assessmentStatus" value="Not Started" disabled="true"></lightning-input> 
+                <lightning-input label="Description" name="description" onchange={handleInputDescription}></lightning-input>
+                <lightning-input type="datetime" label="Due Date" name="dueDate" onchange={handleInputDueDate}></lightning-input>
+            </lightning-modal-body>
+            <lightning-modal-footer>
+                <lightning-button label="Cancel" onclick={handleCancel}></lightning-button>
+                <lightning-button label="Save" variant="brand" onclick={handleSave}></lightning-button>
+            </lightning-modal-footer>
+    
+</template>

@@ -1,0 +1,22 @@
+<template>
+    <lightning-modal-header label="Create Assessment Response"></lightning-modal-header>
+    <lightning-modal-body>
+        <div class="slds-p-around_medium lgc-bg">
+            <lightning-input type="text" label="Enter Student Name" value={studentName} disabled="true"></lightning-input>
+        </div>
+        <div class="slds-p-around_medium lgc-bg">
+            <lightning-input type="text" label="Enter Student Number" value={studentNumber} disabled="true"></lightning-input>
+        </div>
+        <div class="slds-p-around_medium lgc-bg">
+            <lightning-input type="text" label="Enter Subject Code" value={assessment.subjectCode} disabled="true"></lightning-input>
+        </div>
+        <div class="slds-p-around_medium lgc-bg">
+            <lightning-input type="text" label="Enter Assessment Name" value={assessment.assessmentName} disabled="true"></lightning-input>
+        </div>
+        
+    </lightning-modal-body>
+    <lightning-modal-footer>
+        <lightning-button label="Save" onclick={handleSave}></lightning-button>
+        <lightning-button label="Cancel" onclick={handleCancel}></lightning-button>
+    </lightning-modal-footer> 
+</template>

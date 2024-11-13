@@ -1,0 +1,16 @@
+<template>
+    <lightning-card title="Course Details" icon-name="custom:custom63">
+        <div class="slds-p-around_medium">
+            <template if:true={courseData}>
+                <div><strong>Course Name:</strong> {courseData.name}</div>
+                <div><strong>Description:</strong> <lightning-formatted-rich-text value={courseData.description}></lightning-formatted-rich-text></div>
+                 
+            </template>
+
+            <template if:true={error}>
+                <p class="slds-text-color_error">Error: {error}</p>
+            </template>
+        </div>
+        <lightning-button label=" Back to course" onclick={handleBack}></lightning-button>
+    </lightning-card>
+</template>

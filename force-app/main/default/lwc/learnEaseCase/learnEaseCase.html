@@ -1,0 +1,12 @@
+<template>
+    <lightning-card title="Cases List" icon-name="standard:case">
+        <lightning-datatable
+            key-field="id"
+            data={data}
+            columns={columns}
+            onrowaction={handleRowAction}
+            hide-checkbox-column="true">
+        </lightning-datatable>
+    </lightning-card>
+    
+</template>

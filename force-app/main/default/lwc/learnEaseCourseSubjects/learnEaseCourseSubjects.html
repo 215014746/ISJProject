@@ -1,0 +1,25 @@
+<template>
+    <lightning-card title="Enrolled Courses and Subjects" icon-name="custom:custom63">
+        <div class="course-container">
+            <template if:true={courseData}>
+                <div class="course-name">{courseData.name}</div>
+                <lightning-button class="view-course-btn" label="View course" data-course={courseData.courseId} onclick={navigateToViewCourse}></lightning-button>
+                <hr/>
+                    <template for:each={courseData.subjects} for:item="subject">
+                        
+                            <lightning-card title= {subject.name} key={subject.subjectId}>
+                                
+                                    <span class="subject-code"> | {subject.subjectCode}</span>
+                                    <lightning-button slot="actions" class="view-subject-btn" label="View subject" data-subject={subject.subjectId} onclick={navigateToViewSubject}></lightning-button>
+                                
+                            </lightning-card>
+                        
+                    </template>
+                
+            </template>
+            <template if:false={courseData}>
+                <p class="no-data">No courses or subjects found.</p>
+            </template>
+        </div>
+    </lightning-card>
+</template>

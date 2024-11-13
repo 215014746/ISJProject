@@ -1,0 +1,42 @@
+<template>
+    <template if:true={assessmentResponse}>
+        <lightning-card title={assessmentResponse.assessmentName}>
+          <p>studentName :{assessmentResponse.studentName} </p> 
+
+        </lightning-card><br>
+        <template for:each={assessmentResponse.responses} for:item="response">
+            
+            <div key={response.responseId}>
+                <p>
+                    {response.responseNumber}.
+                    <lightning-formatted-rich-text value={response.questionText}></lightning-formatted-rich-text> 
+                </p>
+                <template if:true={response.questionResponse}>
+                    <template if:true={response.editable}>
+                    <lightning-input-rich-text disabled   data-resp={response.responseId} value={response.questionResponse} onchange={updateResponse}> </lightning-input-rich-text>
+
+                    </template>
+                    <template if:false={response.editable}>
+                    <lightning-input-rich-text data-resp={response.responseId} value={response.questionResponse} onchange={updateResponse}> </lightning-input-rich-text>
+
+                    </template>
+                    
+            
+                </template>
+                <template if:false={response.questionResponse}>
+                    <template if:true={response.editable}>
+                        <lightning-input-rich-text disabled   data-resp={response.responseId} onchange={updateResponse}> </lightning-input-rich-text>
+    
+                        </template>
+                        <template if:false={response.editable}>
+                        <lightning-input-rich-text data-resp={response.responseId}  onchange={updateResponse}> </lightning-input-rich-text>
+    
+                        </template>
+                </template>
+           </div>
+        </template>
+        <lightning-button label="Back" onclick={handleBack}></lightning-button>
+        <lightning-button label="Save" onclick={saveResponses}></lightning-button>
+    </template>
+    
+</template>
