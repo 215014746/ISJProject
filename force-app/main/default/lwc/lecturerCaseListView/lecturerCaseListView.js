@@ -6,7 +6,7 @@ const actions = [
     { label: 'Edit', name: 'edit' }, 
 ]; 
 
-export default class LearnEaseListCaseView extends NavigationMixin(LightningElement) { 
+export default class lecturerEaseListCaseView  extends NavigationMixin(LightningElement) { 
     @api caseReceiverId;
     caseId;
     @track cases;
