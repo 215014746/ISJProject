@@ -1,8 +1,11 @@
 public with sharing class CaseController{
+    // Creates a new Case record from a JSON string, returns the Case ID
     @AuraEnabled
     public static Id createCase(String caseData){
+        // Deserialize the JSON data to a CaseObject instance
         try{
             CaseObject newCase = (CaseObject)JSON.deserialize(caseData, CaseObject.class);
+            // Insert the Case record and return its ID
             Id caseId = CaseDataService.insertCase(CaseObject.mapCaseObjectToCase(newCase));
             return caseId;
         } catch (Exception e){
@@ -10,6 +13,7 @@ public with sharing class CaseController{
         }
     }
 
+    // Retrieves a list of cases by owner ID, mapped to CaseObjects
     @AuraEnabled
     public static List<CaseObject> getCasesByOwnerId(String ownerId){
         try{
@@ -19,6 +23,7 @@ public with sharing class CaseController{
         }
     }
 
+    // Retrieves a list of cases where the logged-in user is the case receiver
     @AuraEnabled(cacheable = true)
     public static List<CaseObject> getCasesByCaseReceiverId(){
         try{
@@ -28,6 +33,7 @@ public with sharing class CaseController{
         }
     }
 
+    // Retrieves a single case by its ID and maps it to a CaseObject
     @AuraEnabled
     public static CaseObject getCaseId(String caseReceiverId){
         try{
@@ -38,6 +44,7 @@ public with sharing class CaseController{
         }
     }
 
+    // Updates an existing case with the data provided in JSON format
     @AuraEnabled
     public static void updateCase(String caseData){
         try{
@@ -49,6 +56,7 @@ public with sharing class CaseController{
         }
     }
 
+    // Deletes a case by its ID
     @AuraEnabled
     public static void deleteCase(String caseId){
         try{
@@ -58,7 +66,7 @@ public with sharing class CaseController{
         }
     }
 
-    //HELPER METHODS
+    //Helper method to map a list of Case records to CaseObjects
     private static List<CaseObject> mapMultipleCasesToCaseObjects(List<Case> cases){
 
         List<CaseObject> results = new List<CaseObject>();
