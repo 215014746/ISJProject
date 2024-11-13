@@ -3,8 +3,9 @@ import { CurrentPageReference } from 'lightning/navigation';
 import { NavigationMixin } from 'lightning/navigation';
 
 export default class LearnEaseCaseDetail extends NavigationMixin(LightningElement) {
+    // Holds the record ID from the URL
     @api recordId;
-
+    // Retrieve record ID from URL parameters
     @wire(CurrentPageReference)
     getStateParameters(currentPageReference) {
        if (currentPageReference) {
@@ -15,7 +16,7 @@ export default class LearnEaseCaseDetail extends NavigationMixin(LightningElemen
     handleBack() {
         window.history.back();
     }
-
+    // Navigate to edit page with the current case ID
     handleEdit() {
         const caseID = this.recordId
         this[NavigationMixin.Navigate]({

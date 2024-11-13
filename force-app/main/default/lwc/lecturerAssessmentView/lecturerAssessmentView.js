@@ -3,48 +3,46 @@ import getAssessmentAndQuestionsByAssessmentId from '@salesforce/apex/Assessment
 import { CurrentPageReference } from 'lightning/navigation';
 import { NavigationMixin } from 'lightning/navigation';
 
-export default class LecturerAssessmentView extends NavigationMixin(LightningElement)  {
+export default class LecturerAssessmentView extends NavigationMixin(LightningElement) {
 
-    @track assessment;
-    @track error;
-    assessmentId;
-    @track assessmentResponse;
+    @track assessment; // Holds assessment and question data
+    @track error; // Holds error message if data fetch fails
+    assessmentId; // Stores assessment ID from the page state
+    @track assessmentResponse; // Placeholder for potential response data
 
-
+    // Retrieve page parameters to get the assessment ID
     @wire(CurrentPageReference)
     getStateParameters(currentPageReference) {
         if (currentPageReference && currentPageReference.state.assessmentId) {
             this.assessmentId = currentPageReference.state.assessmentId;
-            this.loadAssessmentData();
+            this.loadAssessmentData(); // Load assessment data with the ID
         }
     }
 
+    // Load assessment and question details from the server
     loadAssessmentData() {
         getAssessmentAndQuestionsByAssessmentId({ assessmentId: this.assessmentId })
             .then(result => {
                 this.assessment = result;
                 this.error = undefined;
-                console.log('my assessment', result);
-                
-            })
+                console.log('my assessment', result);})
             .catch(error => {
                 this.error = error.body.message;
                 this.assessment = undefined;
             });
     }
 
+    // Refresh assessment data after any change
     refreshData() {
         this.loadAssessmentData();
     }
 
-    // Call this method after any changes are made to the assessment
+    // Handles updates to the assessment and refreshes the view
     handleAssessmentChange() {
-        // Logic to update the assessment
-        // After successful update, refresh the data
-        this.refreshData();
-    }
+        this.refreshData();}
     
+    // Go back to the previous page
     handleBack() {
         window.history.back();
-    } 
+    }
 }

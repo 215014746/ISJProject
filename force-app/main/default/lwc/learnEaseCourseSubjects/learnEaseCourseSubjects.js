@@ -4,10 +4,10 @@ import { NavigationMixin } from "lightning/navigation";
 
 export default class LearnEaseCourseSubjects extends NavigationMixin(LightningElement) {
    
-    courseData;
-    baseUrl = '/course/viewcourse?';
-    subjectUrl = '/course/viewcourse/viewsubject?';
-
+    courseData;// Holds data for courses and subjects
+    baseUrl = '/course/viewcourse?';// URL for course view navigation
+    subjectUrl = '/course/viewcourse/viewsubject?';// URL for subject view navigation
+  // Fetch course and subject data when component loads
     connectedCallback() {
         getCourseAndSubject().then((result) => {
             console.log(result);
@@ -18,7 +18,7 @@ export default class LearnEaseCourseSubjects extends NavigationMixin(LightningEl
             }
         );
     }
-
+// Navigate to course view page with course ID
     navigateToViewCourse(e) {
         
         this[NavigationMixin.Navigate]({
@@ -28,7 +28,7 @@ export default class LearnEaseCourseSubjects extends NavigationMixin(LightningEl
           },
         });
     }
-
+// Navigate to subject view page with subject ID
     navigateToViewSubject(e) {
         
         this[NavigationMixin.Navigate]({

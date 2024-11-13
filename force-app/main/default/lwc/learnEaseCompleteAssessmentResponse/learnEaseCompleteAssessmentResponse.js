@@ -5,14 +5,14 @@ import saveAssessmentQuestionResponses from '@salesforce/apex/AssessmentQuestion
 
 export default class LearnEaseCompleteAssessmentResponse extends LightningElement {
 
-    assessmentResponseId;
-    assessmentResponse;
-
-    responsesMap = {};
+    assessmentResponseId;// Holds assessment response ID from URL
+    assessmentResponse;// Stores assessment response data
+    responsesMap = {};// Maps response IDs to their corresponding data
     responseData = {
     responses : []
-};
+};// Object to store responses for saving
 
+    // Retrieve assessmentResponseId from URL parameters
     @wire(CurrentPageReference)
     getStateParameters(currentPageReference) {
         console.log(currentPageReference.state.assessmentResponseId);
@@ -21,7 +21,7 @@ export default class LearnEaseCompleteAssessmentResponse extends LightningElemen
             this.loadAssessmentData();
         }
     }
-
+    // Fetch assessment data and populate responsesMap
     loadAssessmentData() {
         getResponeAndQuestionResponseByAssessmentResponseId({ assessmentResponseId: this.assessmentResponseId })
             .then(result => {
@@ -39,7 +39,7 @@ export default class LearnEaseCompleteAssessmentResponse extends LightningElemen
           console.log('my assessment error');
             });
     }
-
+    // Update question response based on user input
     updateResponse(e){
         console.log(e.target.value);
         console.log(e.target.dataset.resp);
@@ -47,7 +47,7 @@ export default class LearnEaseCompleteAssessmentResponse extends LightningElemen
         console.log(JSON.stringify(this.responsesMap, null, 2));
     }
 
-
+    // Save all question responses to the server
     saveResponses(){
         Object.keys(this.responsesMap).forEach(e => {
            this.responseData.responses.push(this.responsesMap[e]);

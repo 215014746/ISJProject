@@ -11,7 +11,7 @@ export default class LearnEaseAssessmentView extends NavigationMixin(LightningEl
     assessmentId;
     @track assessmentResponse;
 
-
+    // Retrieve assessment ID from URL parameters
     @wire(CurrentPageReference)
     getStateParameters(currentPageReference) {
         if (currentPageReference && currentPageReference.state.assessmentId) {
@@ -20,6 +20,7 @@ export default class LearnEaseAssessmentView extends NavigationMixin(LightningEl
         }
     }
 
+    // Fetch assessment and questions data
     loadAssessmentData() {
         getAssessmentAndQuestionsByAssessmentId({ assessmentId: this.assessmentId })
             .then(result => {
@@ -35,7 +36,7 @@ export default class LearnEaseAssessmentView extends NavigationMixin(LightningEl
                 this.assessment = undefined;
             });
     }
-
+    // Fetch assessment response data by assessment ID
     loadAssessmentResponse() {
         getAssessmentResponseByAssessmentId({ assessmentId: this.assessmentId })
             .then(result => {
@@ -47,7 +48,7 @@ export default class LearnEaseAssessmentView extends NavigationMixin(LightningEl
             
             });
     }
-
+    // Navigate to view subject page with the assessment ID
     navigateToViewSubject(assessmentId) {
         this[NavigationMixin.Navigate]({
             type: 'standard__webPage',
@@ -59,7 +60,7 @@ export default class LearnEaseAssessmentView extends NavigationMixin(LightningEl
     handleBack() {
         window.history.back();
     }
-
+    // Handle creation of a new assessment response in a modal - pop up form when create button is clicked
     async handleCreateAssessmentResponse() {
         const result = await createAssessmentResponseModal.open({
             size: 'large',
@@ -78,7 +79,7 @@ export default class LearnEaseAssessmentView extends NavigationMixin(LightningEl
         }
     }
     
-
+    // Navigate to view the assessment response page
     handleViewAssessmentResponse(){
 
         this[NavigationMixin.Navigate]({

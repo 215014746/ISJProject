@@ -40,7 +40,7 @@ export default class LearnEaseCase extends NavigationMixin(LightningElement) {
                 this.showToast('Error', error.body.message, 'error');
             });
     }
-
+    // Shows a success message after performing an operation
     showToast(title, message, variant) {
         const event = new ShowToastEvent({
             title,
@@ -49,14 +49,7 @@ export default class LearnEaseCase extends NavigationMixin(LightningElement) {
         });
         this.dispatchEvent(event);
     }
-    /*navigateNext(e) {
-        this[NavigationMixin.Navigate]({
-          type: "standard__webPage",
-          attributes: {
-            URL: '/cases/view',
-          },
-        });
-      }*/
+  
 
         handleRowAction(event) {
             const caseId = event.detail.row.caseID;

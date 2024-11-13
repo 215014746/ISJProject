@@ -1,14 +1,15 @@
 import { api } from 'lwc';
 import LightningModal from 'lightning/modal';
 import createCase from '@salesforce/apex/CaseController.createCase';
-import getCaseReceivers from '@salesforce/apex/LectureController.getCaseRecievers'
+import getCaseReceivers from '@salesforce/apex/LectureController.getCaseRecievers';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
 export default class LearnEaseCreateCase extends LightningModal {
 
-    caseReceivers = [];
-    caseData = {}; 
+    caseReceivers = []; // List of possible receivers for the case
+    caseData = {}; // Data object to hold case information input by the user
 
+    // Fetch case receivers when component is created
     constructor() {
         super();
         getCaseReceivers().then(result => {
@@ -16,9 +17,9 @@ export default class LearnEaseCreateCase extends LightningModal {
         });
     }
 
-    @api case;
+    @api case; // Holds case data passed to this component
 
-    // Options for case reasons
+    // Options for case reasons dropdown
     get options() {
         return [
             { label: 'Late Submission', value: 'Late Submission' },
@@ -29,7 +30,7 @@ export default class LearnEaseCreateCase extends LightningModal {
         ];
     }
 
-    // Handlers for input fields
+    // Handlers for input fields to update caseData object
     handleSubject(e) {
         this.caseData.subject = e.target.value;
     }
@@ -54,37 +55,37 @@ export default class LearnEaseCreateCase extends LightningModal {
         this.caseData.caseReceiver = e.detail.value;
     }
 
-    // Save Case and handle result
+    // Save the case and show a toast message based on result
     handleSave() {
         createCase({ caseData: JSON.stringify(this.caseData) })
             .then(result => {
-                // Show success toast
+                // Show success toast notification
                 this.dispatchEvent(new ShowToastEvent({
                     title: 'Success',
                     message: 'Case created successfully',
                     variant: 'success'
                 }));
-
-                // Reset form data to avoid duplication
+                
+                // Reset form data after saving
                 this.caseData = {};
 
-                // Close the modal
+                // Close the modal with result
                 this.close(result);
             })
             .catch(error => {
-                // Show error toast
+                // Show error toast notification
                 this.dispatchEvent(new ShowToastEvent({
                     title: 'Error creating case',
                     message: error.body.message,
                     variant: 'error'
                 }));
 
-                // Still close the modal if needed
+                // Close the modal even in case of an error
                 this.close();
             });
     }
 
-    // Close form on cancel
+    // Close modal without saving when user cancels
     handleCancel() {
         this.close('cancel');
     }

@@ -11,6 +11,7 @@ export default class LearnEaseSubjectDetails extends NavigationMixin(LightningEl
     assessments = [];
     baseUrl = '/assessmentview?';
 
+    // Fetch the subjectId from the page state
     @wire(CurrentPageReference)
     getStateParameters(currentPageReference) {
        if (currentPageReference) {
@@ -20,7 +21,7 @@ export default class LearnEaseSubjectDetails extends NavigationMixin(LightningEl
           }
        }
     }
-
+     // Fetch subject details based on subjectId
     getSubjectDetails() {
         getSubjectBySubjectId({subjectId: this.subjectId}).then((result) => {
             console.log(result);
@@ -32,7 +33,7 @@ export default class LearnEaseSubjectDetails extends NavigationMixin(LightningEl
             }
         );
     }
-
+     // Fetch assessments related to the subject
     getAssessmentSubjects() {
         getAllBySubject({subject: this.subjectId}).then((result) => {
             console.log(result);
@@ -44,7 +45,7 @@ export default class LearnEaseSubjectDetails extends NavigationMixin(LightningEl
             }
         );
     }
-
+    // Navigate to the assessment view page for a selected assessment
     navigateToViewAssessment(e) {
         
         this[NavigationMixin.Navigate]({
