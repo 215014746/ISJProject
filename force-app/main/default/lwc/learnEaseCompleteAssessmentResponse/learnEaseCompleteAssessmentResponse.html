@@ -1,7 +1,8 @@
 <template>
     <template if:true={assessmentResponse}>
         <lightning-card title={assessmentResponse.assessmentName}>
-          <p>studentName :{assessmentResponse.studentName} </p> 
+          <p>Student Name :{assessmentResponse.studentName} </p> 
+          <p>Total marks : {assessmentResponse.marks}</p>
 
         </lightning-card><br>
         <template for:each={assessmentResponse.responses} for:item="response">
@@ -18,10 +19,11 @@
                     </template>
                     <template if:false={response.editable}>
                     <lightning-input-rich-text data-resp={response.responseId} value={response.questionResponse} onchange={updateResponse}> </lightning-input-rich-text>
-
-                    </template>
                     
-            
+                    </template><br>
+                    
+                    <p>Marks : {response.marks}</p><br>
+
                 </template>
                 <template if:false={response.questionResponse}>
                     <template if:true={response.editable}>
